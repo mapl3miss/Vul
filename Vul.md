@@ -3,12 +3,12 @@
 **Vulnerability Location:**
 In the `@RequestMapping("/code")` endpoint of the `SysGeneratorController.java` class, specifically in the `JSON.parseArray(tables)` call.
 
-![image-20250328185805310](C:\Users\1\AppData\Roaming\Typora\typora-user-images\image-20250328185805310.png)
+![image-20250328185805310](img\image-20250328185805310.png)
 
 **Vulnerability Description:**
 The code uses the Fastjson library without enabling SafeMode or disabling AutoType features. The `JSON.parseArray()` method directly parses unvalidated user input (`tables` parameter). When using Fastjson ≤1.2.83, an attacker could craft malicious JSON data to achieve **Remote Code Execution (RCE)**.
 
-![image-20250328182148905](C:\Users\1\AppData\Roaming\Typora\typora-user-images\image-20250328182148905.png)
+![image-20250328182148905](img\image-20250328182148905.png)
 The project is using a vulnerable version of Fastjson.
 
 **Impact:**
@@ -37,12 +37,12 @@ Connection: close
 
 **Proof of Vulnerability:**
 
-Establish an LDAP service and load malicious code to exploit the deserialization flaw.![image-20250328182626670](C:\Users\1\AppData\Roaming\Typora\typora-user-images\image-20250328182626670.png)
+Establish an LDAP service and load malicious code to exploit the deserialization flaw.![image-20250328182626670](img\image-20250328182626670.png)
 
 Exploitation via Malicious Tables Parameter
 
-![image-20250328183031757](C:\Users\1\AppData\Roaming\Typora\typora-user-images\image-20250328183031757.png)
+![image-20250328183031757](img\image-20250328183031757.png)
 
 Successful code execution
 
-![image-20250328183135349](C:\Users\1\AppData\Roaming\Typora\typora-user-images\image-20250328183135349.png)
+![image-20250328183135349](img\image-20250328183135349.png)
